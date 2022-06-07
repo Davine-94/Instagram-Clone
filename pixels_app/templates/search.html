@@ -1,0 +1,79 @@
+{% extends "base.html" %} {% block content %} {%load static%}
+<!-- search result -->
+<section>
+  <div class="container mt-5">
+    <div class="row w-50 mx-auto">
+      <div class="col-md-4"></div>
+      {% for image in images %}
+      <div
+        class="card border-secondary mb-3 col-sm-12 col-md-12 col-lg-12"
+        style="max-width: 100%"
+      >
+        <div
+          class="card-header bg-transparent border-secondary"
+          style="display: flex; align-items: end"
+        >
+          <img
+            src="{{image.user.profile.photo.url}}"
+            alt=""
+            style="
+              height: 30px;
+              width: 30px;
+              border-radius: 50%;
+              margin-right: 15px;
+            "
+          />
+          <h6><strong>{{image.user.username}}</strong></h6>
+        </div>
+        <div class="card-body">
+          <img class="img-fluid" src="{{image.image.url}}" alt="" />
+          <div class="d-flex justify-content-start" style="padding: 10px 0 10px 20px;">
+            <div>
+              <p>
+                <a href="{% url 'like_image' image.id %}"
+                  ><img
+                    src="{%static 'img/heart.svg'%}"
+                    alt="like"
+                    style="margin-right: 15px;"
+                /></a>
+              </p>
+            </div>
+            <div>
+              <p>
+                <a href="{% url 'single_image' image.id %}"
+                  ><img src="{%static 'img/message-circle.svg'%}" alt="comment" style="margin-right: 15px;"
+                /></a>
+              </p>
+            </div>
+            <div>
+              <p>
+                <a href="{% url 'single_image' image.id %}"
+                    style="margin-right: 20px;"
+                  ><img src="{%static 'img/send.svg'%}" alt="comment"
+                /></a>
+              </p>
+            </div>
+          </div>
+          <div style="padding: 20px;">
+            <a href="{% url 'single_image' image.id %}">
+              <p class="fade-item">
+                <strong>{{image.total_likes }} likes</strong>
+                <h6 class="">
+                  <h6 style="display:inline;"><strong>{{image.user.username}}</strong></h6>
+                  {{ image.caption|slice:":20" }}<small
+                    ><span class="text-muted">...more</span></small
+                  >
+                </h6> <br>
+                View all
+                {{image.total_comments}} comments
+              </p>
+              {{image.post_time | timesince}} ago
+            </a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

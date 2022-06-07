@@ -1,0 +1,110 @@
+{% extends "base.html" %} {% block content %}
+<div
+  class="card d-flex w-50 mx-auto"
+  style="
+    padding: 50px;
+    flex-direction: row;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  "
+>
+  <div class="profile-photo"style="margin-right: 50px;">
+    {% if profile.photo %}
+    <img
+      src="{{profile.photo.url}}"
+      alt=""
+      class="card-img-top"
+      style="width: 200px; height: 200px; border-radius: 50%"
+    />
+    {%else%}
+    {% endif %}
+  </div>
+  <div class="card-body" style="padding: 20px">
+    <p><h3>{{ user.username }}</h3></p>
+    <h6 class="card-text"><strong>{{ user.first_name }} {{ user.last_name }}</strong></h6>
+    <p>
+      {% if profile.bio %}
+      <small>{{ profile.bio }}</small>
+      {% else %}
+      <span class="">No bio</span>
+      {% endif %}
+    </p>
+  </div>
+  <div class="row mt-3 mb-3">
+    <div class="col-md-12">
+            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
+                data-bs-target="#profileModal">Edit Profile</button>
+            <div class="modal fade" id="profileModal" tabindex="-1" role="dialog"
+                aria-labelledby="profileModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="profileModalLabel">Update Profile</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{% url 'update_profile' %}" method="POST"
+                                enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="form-group mb-3">
+                                    <label for="name">First Name</label>
+                                    <input type="text" class="form-control" id="first_name"
+                                        name="first_name" value="{{ user.first_name }}">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="name">Last Name</label>
+                                    <input type="text" class="form-control" id="last_name"
+                                        name="last_name" value="{{ user.last_name }}">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="username">Username</label>
+                                    <input type="text" class="form-control" id="username"
+                                        name="username" value="{{ user.username }}">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" id="email" name="email"
+                                        value="{{ user.email}}">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="bio">Bio</label>
+                                    <textarea name="bio" id="bio" cols="30" rows="10"
+                                        class="form-control">{{ profile.bio }}</textarea>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="profile_pic">Profile Picture</label>
+                                    <input type="file" class="form-control" id="profile_pic"
+                                        name="profile_pic" required>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-outline-danger">Update Account</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row w-50 mx-auto text-center">
+    <p><h3><strong>Posts by {{ user.username }}</strong></h3></p>
+    {% for image in images %}
+    <div class="col-md-4">
+        <a href="{% url 'single_image' image.id %}">
+            <div class="card mb-4">
+                <img src="{{ image.image.url }}" class="card-img-tops" alt="Image">
+            </div>
+        </a>
+    </div>
+    {% empty %}
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <div class="alert alert-info" role="alert">
+            No images!
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{%endblock%}

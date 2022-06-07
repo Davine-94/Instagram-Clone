@@ -1,0 +1,24 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+django-bootstrap5 = "*"
+psycopg2 = "*"
+pillow = "*"
+gunicorn = "*"
+django-heroku = "*"
+django-cloudinary-storage = "*"
+django-registration = "*"
+
+[dev-packages]
+black = "*"
+autopep8 = "*"
+
+[requires]
+python_version = "3.8"
+
+[pipenv]
+allow_prereleases = true

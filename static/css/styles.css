@@ -1,0 +1,72 @@
+@import url("https://fonts.googleapis.com/css2?family=Cookie&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+body {
+  font-family: "Montserrat", sans-serif;
+}
+
+nav {
+  height: 60px;
+  position: sticky;
+}
+
+.instagram {
+  font-family: "Cookie", cursive;
+  color: black;
+  font-size: 40px;
+}
+
+.navbar--styles {
+  width: 50%;
+  justify-content: space-around !important;
+}
+
+.search-form {
+  justify-content: center;
+  align-items: center;
+}
+
+#navbarContent {
+  justify-content: space-around;
+  align-items: center;
+}
+
+#navform {
+  margin-top: 10px;
+}
+
+#profilePhoto {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+}
+
+.dropdown-toggle::after {
+  display: none;
+}
+
+.far.fa-user-circle {
+  margin-right: 5px;
+}
+
+.card-body {
+  padding: 0;
+}
+
+.card.border-secondary.mb-3.col-sm-12.col-md-12.col-lg-12 {
+  padding: 0;
+  border-radius: 0;
+}
+
+.border-secondary {
+  border-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  color: black;
+  cursor: pointer;
+}

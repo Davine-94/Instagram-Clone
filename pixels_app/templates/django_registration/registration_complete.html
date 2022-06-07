@@ -1,0 +1,17 @@
+{%extends "django_registration/base.html"%} {% load django_bootstrap5 %}
+<!-- content block  -->
+{%block content %}
+<div
+  class="registration w-50 mx-auto text-center"
+  style="padding: 100px; font-family: 'Montserrat', sans-serif"
+>
+  <img
+    src="https://seeklogo.com/images/I/instagram-new-2016-logo-4773FE3F99-seeklogo.com.png"
+    alt="instagram"
+  />
+  <h2>Registration Successful!</h2>
+  <a href="{% url 'login' %}"
+    ><input type="submit" class="btn btn-primary btn-sm" value="Login"
+  /></a>
+</div>
+{% endblock %}
